@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Index from "./components/layout/Index";
-//import "./components/styles/Footer.css";
-//import "./components/styles/Header.css";
-// import "./components/styles/Index.css";
-import "./App.css";
+import "./index.css";
 
 const App = () => {
+  const [showScroll, setShowScroll] = useState(false);
+
+  // Function to handle scroll visibility
+  const handleScroll = () => {
+    if (window.scrollY > 200) {
+      setShowScroll(true);
+    } else {
+      setShowScroll(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <Router>
       <div className="app-container">
@@ -19,6 +32,13 @@ const App = () => {
           </Routes>
         </main>
         <Footer />
+
+        {/* Back to Top Button */}
+        {showScroll && (
+          <button className="scroll-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            ↑
+          </button>
+        )}
       </div>
     </Router>
   );
