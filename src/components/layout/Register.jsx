@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import "index.css";
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +9,7 @@ const Register = () => {
         confirmPassword: ""
     });
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -21,13 +21,20 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setError("");
+        setSuccess("");
+
         if (formData.password !== formData.confirmPassword) {
             setError("Passwords do not match");
             return;
         }
+
         console.log("Registering user:", formData);
-        // API call for real-time chat registration
-        navigate("/chat");
+        setSuccess("Registration successful! Redirecting to home...");
+
+        setTimeout(() => {
+            navigate("/");
+        }, 2000);
     };
 
     return (
@@ -35,6 +42,7 @@ const Register = () => {
             <form className="register-form" onSubmit={handleSubmit}>
                 <h2>Register</h2>
                 {error && <p className="error">{error}</p>}
+                {success && <p className="success">{success}</p>}
                 <div className="input-group">
                     <label htmlFor="username">Username</label>
                     <input
@@ -84,6 +92,7 @@ const Register = () => {
                     />
                 </div>
                 <button type="submit" className="btn">Register</button>
+                {success && <p className="success">{success}</p>}
                 <p>Already have an account? <a href="/login">Login</a></p>
             </form>
         </div>
