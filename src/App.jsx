@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Index from "./components/layout/Index";
-import "./index.css";
+import "./App.css";
 
-const App = () => {
+function App() {
   const [showScroll, setShowScroll] = useState(false);
 
   // Function to handle scroll visibility
@@ -29,6 +29,9 @@ const App = () => {
         <main className="content">
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Added Dashboard Route */}
           </Routes>
         </main>
         <Footer />
@@ -42,6 +45,6 @@ const App = () => {
       </div>
     </Router>
   );
-};
+}
 
 export default App;
