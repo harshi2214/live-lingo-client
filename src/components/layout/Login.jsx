@@ -1,46 +1,50 @@
-import React, { useState } from "react"; 
-import { Link, useNavigate } from "react-router-dom"; 
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => { 
-const [email, setEmail] = useState(""); 
-const [password, setPassword] = useState(""); 
-const navigate = useNavigate();  
+const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(""); // State for error messages
+    const navigate = useNavigate();
 
-const handleSubmit = (e) => { 
-e.preventDefault(); 
+    // Mock authentication (replace with API call when backend is ready)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        const storedUser = JSON.parse(localStorage.getItem("user")); // Get stored user
+        if (!storedUser || storedUser.email !== email || storedUser.password !== password) {
+            setError("Invalid email or password"); // Show error message
+            return;
+        }
 
-if (!email || !password) { 
-alert("Please enter both email and password."); 
-return; 
-} 
+        console.log("Login successful!");
+        localStorage.setItem("isAuthenticated", "true");  
+        navigate("/dashboard"); 
+    };
 
-console.log("Login successful!"); 
-localStorage.setItem("isAuthenticated", "true");  
+    return (
+        <div className="login-container">
+            <form className="login-form" onSubmit={handleSubmit}>
+                <h2>Login</h2>
 
-navigate("/dashboard"); 
-};  
+                {error && <p className="error-message">{error}</p>} {/* Show error if login fails */}
 
-return ( 
-<div className="login-container"> 
-<form className="login-form" onSubmit={handleSubmit}> 
-<h2>Login</h2> 
+                <div className="input-group">
+                    <label>Email</label>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                </div>
 
-<div className="input-group"> 
-<label>Email</label> 
-<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /> 
-</div> 
+                <div className="input-group">
+                    <label>Password</label>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                </div>
 
-<div className="input-group"> 
-<label>Password</label> 
-<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required /> 
-</div> 
+                <button type="submit" className="btn">Login</button>
 
-<button type="submit" className="btn">Login</button> 
-
-<p> Dont have an account? <Link to="/register">Register</Link> </p> 
-</form> 
-</div> 
-); 
-};  
+                <p>Dont have an account? <Link to="/register">Register</Link></p>
+            </form>
+        </div>
+    );
+};
 
 export default Login;
