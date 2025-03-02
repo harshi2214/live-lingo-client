@@ -6,9 +6,18 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent page refresh
         console.log("Email:", email, "Password:", password);
+        
+        if (!email || !password) {
+            alert("Please enter both email and password.");
+            return;
+        }
+    
+        // Simulate login (later replace this with API call)
+        alert("Login successful!");
     };
+    
 
     return (
         <div className="login-container">
