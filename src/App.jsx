@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Index from "./components/layout/Index";
+import Login from "./pages/Login";
 import Register from "./components/layout/Register";
 //import "./components/styles/Footer.css";
 //import "./components/styles/Header.css";
@@ -17,6 +18,7 @@ const App = () => {
         <main className="content">
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </main>
