@@ -5,9 +5,8 @@ import Footer from "./components/layout/Footer";
 import Index from "./components/layout/Index";
 import Login from "./components/layout/Login";
 import Register from "./components/layout/Register";
-//import "./components/styles/Footer.css";
-//import "./components/styles/Header.css";
-// import "./components/styles/Index.css";
+import Dashboard from "./components/layout/Dashboard"; // Import Dashboard
+
 import "./App.css";
 
 const App = () => {
@@ -20,6 +19,7 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Added Dashboard Route */}
           </Routes>
         </main>
         <Footer />
