@@ -1,5 +1,25 @@
+/* General Styles */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color:#dfdee6;
+  color: hsla(0, 0%, 0%, 0.705);
+  font-family: Arial, sans-serif;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Header */
 .header {
-  background-color: #1e3a5f;
+  background-color: hsl(243, 90%, 73%);
   color: white;
   padding: 15px 20px;
   position: fixed;
@@ -45,36 +65,66 @@
 .nav-links a:hover {
   text-decoration: underline;
 }
-.index-container {
-  text-align: center;
-  padding: 5rem 2rem;
+
+/* Index Page */
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5rem 10%;
+  background: linear-gradient(135deg, #c7c7e2, #bec7dd);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.index-container h1 {
-  font-size: 2.5rem;
-  color: #1e3a5f;
+.hero-content {
+  max-width: 50%;
 }
 
-.index-container p {
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #4f49ff;
+}
+
+.hero-content .highlight {
+  color: #1a2291;
+}
+
+.hero-content p {
   font-size: 1.2rem;
   margin-top: 1rem;
+  color: #292525;
 }
 
-.get-started {
+.learn-more {
   margin-top: 1.5rem;
-  padding: 10px 20px;
+  padding: 12px 25px;
   font-size: 1rem;
-  background-color: #1e3a5f;
+  font-weight: bold;
+  background-color: #1a2291;
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.get-started:hover {
-  background-color: #16314b;
+.learn-more:hover {
+  background-color: #564fc7;
 }
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 40px;
+}
+
+
+/* Footer */
 .footer {
-  background-color: #1e3a5f;
+  background-color: #6c63ff;
   color: white;
   text-align: center;
   padding: 10px 20px;
@@ -84,6 +134,7 @@
   left: 0;
 }
 
+/* Quick Links */
 .quick-links {
   margin-top: 5px;
 }
@@ -96,4 +147,72 @@
 
 .quick-links a:hover {
   text-decoration: underline;
+}
+
+/* Login & Register Forms */
+.login-container, .register-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 50px;
+  background: white;
+  color: black;
+  border-radius: 30px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-form, .register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn {
+  background-color: #7067eb;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #16314b;
+}
+
+/* Dashboard */
+.dashboard-container {
+  text-align: center;
+  padding: 50px;
+}
+
+.dashboard-container h2 {
+  font-size: 2rem;
+}
+
+.dashboard-container button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: hsl(243, 95%, 60%);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.dashboard-container button:hover {
+  background-color: #16314b;
 }
