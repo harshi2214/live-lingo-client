@@ -1,27 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Index from "./components/layout/Index";
-import "./App.css";
+import Login from "./components/layout/Login";
+import Register from "./components/layout/Register";
+import Dashboard from "./components/layout/Dashboard"; // Import Dashboard
 
-function App() {
-  const [showScroll, setShowScroll] = useState(false);
-
-  // Function to handle scroll visibility
-  const handleScroll = () => {
-    if (window.scrollY > 200) {
-      setShowScroll(true);
-    } else {
-      setShowScroll(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+const App = () => {
   return (
     <Router>
       <div className="app-container">
@@ -31,20 +17,13 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Added Dashboard Route */}
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </main>
         <Footer />
-
-        {/* Back to Top Button */}
-        {showScroll && (
-          <button className="scroll-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            ↑
-          </button>
-        )}
       </div>
     </Router>
   );
-}
+};
 
 export default App;

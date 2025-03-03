@@ -1,46 +1,47 @@
-import React, { useState } from "react"; 
-import { Link, useNavigate } from "react-router-dom"; 
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => { 
-const [email, setEmail] = useState(""); 
-const [password, setPassword] = useState(""); 
-const navigate = useNavigate();  
+const Login = () => {
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-const handleSubmit = (e) => { 
-e.preventDefault(); 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-if (!email || !password) { 
-alert("Please enter both email and password."); 
-return; 
-} 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
 
-console.log("Login successful!"); 
-localStorage.setItem("isAuthenticated", "true");  
+    const storedUser = JSON.parse(localStorage.getItem("user"));
 
-navigate("/dashboard"); 
-};  
+    if (storedUser && storedUser.email === formData.email && storedUser.password === formData.password) {
+      localStorage.setItem("isAuthenticated", "true");
+      navigate("/dashboard"); // Redirect to Dashboard after successful login
+    } else {
+      setError("Invalid email or password!");
+    }
+  };
 
-return ( 
-<div className="login-container"> 
-<form className="login-form" onSubmit={handleSubmit}> 
-<h2>Login</h2> 
-
-<div className="input-group"> 
-<label>Email</label> 
-<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /> 
-</div> 
-
-<div className="input-group"> 
-<label>Password</label> 
-<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required /> 
-</div> 
-
-<button type="submit" className="btn">Login</button> 
-
-<p> Dont have an account? <Link to="/register">Register</Link> </p> 
-</form> 
-</div> 
-); 
-};  
+  return (
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        {error && <p className="error">{error}</p>}
+        <div className="input-group">
+          <label>Email</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        </div>
+        <div className="input-group">
+          <label>Password</label>
+          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+        </div>
+        <button type="submit" className="btn">Login</button>
+        <p>Don't have an account? <a href="/register">Register</a></p>
+      </form>
+    </div>
+  );
+};
 
 export default Login;
