@@ -6,7 +6,6 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const [error, setError] = useState("");
@@ -20,22 +19,22 @@ const Register = () => {
     e.preventDefault();
     setError("");
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match!");
-      return;
-    }
-
-    const newUser = {
-      username: formData.username,
-      email: formData.email,
-      password: formData.password,
-    };
-
-    // Store user in localStorage
-    localStorage.setItem("user", JSON.stringify(newUser));
-
-    alert("Registration successful! Redirecting to login...");
-    navigate("/login"); // Redirect to Login after registering
+    fetch("https://user-management-server-3.onrender.com/users", {  // Replace with your Render API URL
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        alert("Registration successful! Redirecting to login...");
+        navigate("/login"); // Redirect to login after successful registration
+      })
+      .catch((error) => {
+        console.error("Error registering user:", error);
+        setError("Failed to register. Try again.");
+      });
   };
 
   return (
@@ -54,10 +53,6 @@ const Register = () => {
         <div className="input-group">
           <label>Password</label>
           <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-        </div>
-        <div className="input-group">
-          <label>Confirm Password</label>
-          <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
         </div>
         <button type="submit" className="btn">Register</button>
         <p>Already have an account? <a href="/login">Login</a></p>
