@@ -14,14 +14,25 @@ const Login = () => {
     e.preventDefault();
     setError("");
 
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    fetch("https://user-management-server-3.onrender.com/users")
+      .then((response) => response.json())
+      .then((users) => {
+        const foundUser = users.find(
+          (user) => user.email === formData.email && user.password === formData.password
+        );
 
-    if (storedUser && storedUser.email === formData.email && storedUser.password === formData.password) {
-      localStorage.setItem("isAuthenticated", "true");
-      navigate("/dashboard"); // Redirect to Dashboard after successful login
-    } else {
-      setError("Invalid email or password!");
-    }
+        if (foundUser) {
+          localStorage.setItem("user", JSON.stringify(foundUser)); // Store user data
+          localStorage.setItem("isAuthenticated", "true"); // Mark user as authenticated
+          navigate("/dashboard"); // Redirect to dashboard
+        } else {
+          setError("Invalid email or password!");
+        }
+      })
+      .catch((error) => {
+        console.error("Error logging in:", error);
+        setError("Failed to log in. Try again.");
+      });
   };
 
   return (
