@@ -131,35 +131,84 @@ const Register = () => {
         )}
 
         {/* STEP 2: Account Credentials */}
-        {step === 2 && (
-          <>
-            <div className="input-group">
-              <label><FontAwesomeIcon icon={faUserCircle} /> Username</label>
-              <input type="text" name="username" value={formData.username} onChange={handleChange} />
-              {errors.username && <p className="error-text">{errors.username}</p>}
-            </div>
-            <div className="input-group">
-              <label><FontAwesomeIcon icon={faLock} /> Password</label>
-              <input type="password" name="password" value={formData.password} onChange={handleChange} />
-              {errors.password && <p className="error-text">{errors.password}</p>}
-            </div>
-            <button type="button" className="btn" onClick={handlePrevious}>Previous</button>
-            <button type="button" className="btn" onClick={handleNext}>Next</button>
-          </>
-        )}
+{/* STEP 2: Account Credentials */}
+{step === 2 && (
+  <>
+    <div className="input-group">
+      <label><FontAwesomeIcon icon={faUserCircle} /> Username</label>
+      <input type="text" name="username" value={formData.username} onChange={handleChange} />
+      {errors.username && <p className="error-text">{errors.username}</p>}
+    </div>
+
+    <div className="input-group">
+      <label><FontAwesomeIcon icon={faLock} /> Password</label>
+      <input type="password" name="password" value={formData.password} onChange={handleChange} />
+      {errors.password && <p className="error-text">{errors.password}</p>}
+    </div>
+
+    <div className="input-group">
+      <label><FontAwesomeIcon icon={faLock} /> Confirm Password</label>
+      <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
+      {errors.confirmPassword && <p className="error-text">{errors.confirmPassword}</p>}
+    </div>
+
+    <div className="button-group">
+      <button type="button" className="btn prev-btn" onClick={handlePrevious}>Previous</button>
+      <button type="button" className="btn next-btn" onClick={handleNext}>Next</button>
+    </div>
+  </>
+)}
+
 
         {/* STEP 3: Chat Preferences */}
-        {step === 3 && (
-          <>
-            <div className="input-group">
-              <label><FontAwesomeIcon icon={faUser} /> Chat Nickname</label>
-              <input type="text" name="chatNickname" value={formData.chatNickname} onChange={handleChange} />
-              {errors.chatNickname && <p className="error-text">{errors.chatNickname}</p>}
-            </div>
-            <button type="button" className="btn" onClick={handlePrevious}>Previous</button>
-            <button type="button" className="btn" onClick={handleNext}>Next</button>
-          </>
-        )}
+   {/* STEP 3: Chat Preferences */}
+{step === 3 && (
+  <>
+    <div className="input-group">
+      <label><FontAwesomeIcon icon={faUser} /> Chat Nickname</label>
+      <input
+        type="text"
+        name="chatNickname"
+        value={formData.chatNickname}
+        onChange={handleChange}
+      />
+      {errors.chatNickname && <p className="error-text">{errors.chatNickname}</p>}
+    </div>
+
+    <div className="input-group">
+      <label><FontAwesomeIcon icon={faLanguage} /> Preferred Language</label>
+      <select name="language" value={formData.language} onChange={handleChange}>
+        <option value="English">English</option>
+        <option value="Spanish">Spanish</option>
+        <option value="French">French</option>
+        <option value="German">German</option>
+        <option value="Chinese">Chinese</option>
+      </select>
+    </div>
+
+    <div className="input-group">
+      <label><FontAwesomeIcon icon={faEye} /> Profile Visibility</label>
+      <select name="visibility" value={formData.visibility} onChange={handleChange}>
+        <option value="Public">Public</option>
+        <option value="Private">Private</option>
+      </select>
+    </div>
+
+    <div className="input-group">
+      <label><FontAwesomeIcon icon={faBell} /> Notifications</label>
+      <select name="notifications" value={formData.notifications} onChange={handleChange}>
+        <option value="Yes">Enable</option>
+        <option value="No">Disable</option>
+      </select>
+    </div>
+
+    <div className="button-group">
+      <button type="button" className="btn prev-btn" onClick={handlePrevious}>Previous</button>
+      <button type="button" className="btn next-btn" onClick={handleNext}>Next</button>
+    </div>
+  </>
+)}
+
 
         {/* STEP 4: Review & Submit */}
         {step === 4 && (
