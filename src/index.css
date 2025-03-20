@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 50px;
 }
 
 /* Header */
@@ -74,12 +74,12 @@
   align-items: center;
   padding: 5rem 10%;
   background: linear-gradient(135deg, #c7c7e2, #bec7dd);
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .hero-content {
-  max-width: 50%;
+  max-width: 60%;
 }
 
 .hero-content h1 {
@@ -94,7 +94,7 @@
 
 .hero-content p {
   font-size: 1.2rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
   color: #292525;
 }
 
@@ -123,40 +123,83 @@
 
 
 /* Footer */
+/* Footer Styling */
 .footer {
   background-color: #6c63ff;
   color: white;
   text-align: center;
-  padding: 10px 20px;
+  padding: 15px 20px;
   width: 100%;
-  position: fixed;
+  position: relative; /* Allows it to scroll with the page */
   bottom: 0;
   left: 0;
+  margin-top: 5px; /* Adds spacing between content & footer */
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Quick Links */
 .quick-links {
-  margin-top: 5px;
+  margin: 10px 0;
 }
 
 .quick-links a {
   color: #b0c4de;
   text-decoration: none;
   margin: 0 10px;
+  font-weight: bold;
 }
 
 .quick-links a:hover {
+  color: white;
   text-decoration: underline;
 }
 
+/* Contact Info */
+.contact-info {
+  margin: 10px 0;
+}
+
+.contact-info a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Social Media Icons */
+.social-links {
+  margin-top: 10px;
+}
+
+.social-links a {
+  color: white;
+  margin: 0 8px;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: scale(1.2);
+}
+
+
 /* Login & Register Forms */
 .login-container, .register-container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 50px;
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 60px;
+  font-size: large;
   background: white;
   color: black;
-  border-radius: 30px;
+  border-radius: 20px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -177,6 +220,7 @@
   width: 100%;
   padding: 10px;
   margin-top: 5px;
+  font-size: medium;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -216,3 +260,72 @@
 .dashboard-container button:hover {
   background-color: #16314b;
 }
+/* Features Section */
+/* Features Section */
+.features-section {
+  text-align: center;
+  padding: 50px 5%;
+  background: none;
+}
+
+.features-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Grid Layout */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Feature Card */
+.feature-card {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Icons */
+.feature-icon {
+  font-size: 2rem;
+  color: #ff6600;
+  margin-bottom: 10px;
+}
+
+/* Title */
+.feature-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Description */
+.feature-description {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
