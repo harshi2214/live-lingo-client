@@ -9,6 +9,9 @@ const Dashboard = () => {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
+    console.log("Auth Check - isAuthenticated:", isAuthenticated);
+    console.log("Auth Check - storedUser:", storedUser);
+
     if (!isAuthenticated || !storedUser) {
       navigate("/login"); // Redirect if not authenticated
     } else {
@@ -18,6 +21,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("user"); // Ensure user data is removed
     navigate("/login");
   };
 

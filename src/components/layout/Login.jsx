@@ -2,54 +2,88 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // State for login inputs
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [error, setError] = useState("");
+
+  // Handle input changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setError(""); // Clear error message on input change
   };
 
-  const handleSubmit = (e) => {
+  // Handle login form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
 
-    fetch("https://user-management-server-3.onrender.com/users")
-      .then((response) => response.json())
-      .then((users) => {
-        const foundUser = users.find(
-          (user) => user.email === formData.email && user.password === formData.password
-        );
+    if (!credentials.email || !credentials.password) {
+      setError("Both fields are required.");
+      return;
+    }
 
-        if (foundUser) {
-          localStorage.setItem("user", JSON.stringify(foundUser)); // Store user data
-          localStorage.setItem("isAuthenticated", "true"); // Mark user as authenticated
-          navigate("/dashboard"); // Redirect to dashboard
-        } else {
-          setError("Invalid email or password!");
-        }
-      })
-      .catch((error) => {
-        console.error("Error logging in:", error);
-        setError("Failed to log in. Try again.");
-      });
+    try {
+      const response = await fetch("https://user-management-server-3.onrender.com/users");
+      const users = await response.json();
+
+      console.log("Fetched users:", users); // Debugging
+
+      // Find user by email & password
+      const user = users.find(
+        (u) => u.email === credentials.email && u.password === credentials.password
+      );
+
+      if (user) {
+        console.log("User found:", user); // Debugging
+
+        // Store login status and user data
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("user", JSON.stringify(user));
+
+        navigate("/dashboard"); // Redirect to dashboard
+      } else {
+        setError("Invalid email or password!");
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      setError("Failed to connect to server. Try again later.");
+    }
   };
 
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        {error && <p className="error">{error}</p>}
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
         <div className="input-group">
-          <label>Email</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={credentials.email}
+            onChange={handleChange}
+            required
+          />
         </div>
+
         <div className="input-group">
-          <label>Password</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+            required
+          />
         </div>
+
+        {error && <p className="error-text">{error}</p>}
+
         <button type="submit" className="btn">Login</button>
-        <p>Don't have an account? <a href="/register">Register</a></p>
       </form>
     </div>
   );
