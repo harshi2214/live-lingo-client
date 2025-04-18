@@ -21,7 +21,7 @@
 .header {
   background-color: hsl(243, 90%, 73%);
   color: white;
-  padding: 15px 20px;
+  padding: 5px 10px;
   position: fixed;
   top: 0;
   left: 0;
@@ -326,4 +326,317 @@
   .features-grid {
     grid-template-columns: repeat(1, 1fr);
   }
+}
+.profile-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.profile-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.profile-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.profile-field label {
+  min-width: 180px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.profile-field .icon {
+  margin-right: 8px;
+}
+
+.profile-field span {
+  flex-grow: 1;
+  color: #555;
+}
+
+.profile-field input {
+  flex-grow: 1;
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-right: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  font-size: 13px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn.edit {
+  background-color: #6c63ff;
+  color: #fff;
+}
+
+.btn.save {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn.cancel {
+  background-color: #dc3545;
+  color: white;
+}
+
+.chatroom-form-container {
+  max-width: 700px; /* You can even go to 900px or 1000px if needed */
+  width: 90%; /* Responsive width */
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+
+.chatroom-form-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.chatroom-form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #444;
+}
+
+.chatroom-form input[type="text"],
+.chatroom-form input[type="number"],
+.chatroom-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 5px;
+  font-size: 1rem;
+}
+
+.chatroom-form textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+.chatroom-form .checkbox {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-create {
+  margin-top: 25px;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-create:hover {
+  background-color: #574fd6;
+}
+
+
+/* chatroom page */
+.chatroom-container {
+  display: flex;
+  height: calc(100vh - 100px); /* between header and footer */
+  font-family: "Segoe UI", sans-serif;
+}
+
+.sidebar {
+  width: 250px;
+  background: var(--sidebar-bg);
+  padding: 1rem;
+  border-right: 1px solid #ccc;
+}
+.search-bar {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+.user-tile {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.avatar {
+  background: #673ab7;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+}
+.avatar-large {
+  background: #673ab7;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  margin-right: 0.5rem;
+}
+
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--chat-bg);
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+}
+.chat-info {
+  display: flex;
+  align-items: center;
+}
+.chat-actions button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.chatroom-meta {
+  padding: 1rem;
+  background: var(--meta-bg);
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background: var(--chat-bg-light);
+}
+.message-item {
+  margin-bottom: 1rem;
+}
+.sender {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+.text {
+  display: inline-block;
+  background: var(--bubble);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  margin-top: 0.25rem;
+}
+.time {
+  display: block;
+  font-size: 0.7rem;
+  color: gray;
+  margin-top: 0.2rem;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  margin-top: 10px;
+}
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background: gray;
+  border-radius: 50%;
+  animation: typing 1s infinite alternate;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes typing {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.4); }
+}
+
+.chat-input {
+  display: flex;
+  padding: 0.75rem;
+  background: white;
+  border-top: 1px solid #ccc;
+}
+.chat-input input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-right: 0.5rem;
+  outline: none;
+}
+.chat-input button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* Colors */
+:root {
+  --primary: #7c4dff;
+  --chat-bg: #f5f5f5;
+  --chat-bg-light: #fff;
+  --meta-bg: #f0f0f0;
+  --bubble: #dcf8c6;
+  --sidebar-bg: #eaeaea;
+}
+body.dark-mode {
+  --chat-bg: #1f1f1f;
+  --chat-bg-light: #2c2c2c;
+  --meta-bg: #333;
+  --bubble: #eccbcb;
+  --sidebar-bg: #222;
+  color: white;
 }

@@ -5,35 +5,30 @@ import Footer from "./components/layout/Footer";
 import Index from "./components/layout/Index";
 import Login from "./components/layout/Login";
 import Register from "./components/layout/Register";
-import Dashboard from "./components/layout/Dashboard"; // Import Dashboard
-import { AuthProvider } from "./context/AuthContext"; // Import AuthProvider
-import ProtectedRoute from "./routes/ProtectedRoute"; // Import ProtectedRoute
+import Dashboard from "./components/layout/Dashboard";
+import Profile from "./components/layout/Profile";
+import CreateChatroom from "./components/layout/CreateChatroom";
+import ChatroomPage from "./components/layout/ChatroomPage"; // ✅ Correct now!
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="app-container">
-          <Header />
-          <main className="content">
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </AuthProvider>
+    <Router>
+      <div className="app-container">
+        <Header />
+        <main className="content">
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/create" element={<CreateChatroom />} />
+            <Route path="/chatroom/:id" element={<ChatroomPage />} /> {/* ✅ This now works */}
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

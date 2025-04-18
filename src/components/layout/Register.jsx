@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser, faEnvelope, faPhone, faCalendar, faVenusMars,
-  faUserCircle, faLock, faLanguage, faEye, faBell
+  faUserCircle, faLock
 } from "@fortawesome/free-solid-svg-icons";
 
 const Register = () => {
@@ -19,16 +19,17 @@ const Register = () => {
     confirmPassword: "",
     chatNickname: "",
     language: "English",
+    theme: "Light",
     visibility: "Public",
     notifications: "Yes",
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({}); // Store validation errors
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" });
+    setErrors({ ...errors, [e.target.name]: "" }); // Clear error when user types
   };
 
   const validateStep = () => {
@@ -54,7 +55,7 @@ const Register = () => {
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return Object.keys(newErrors).length === 0; // If no errors, return true
   };
 
   const handleNext = () => {
@@ -71,7 +72,7 @@ const Register = () => {
     e.preventDefault();
 
     if (validateStep()) {
-      fetch("https://user-management-server-3.onrender.com/users", {
+      fetch("https://user-management-server-3.onrender.com/users", {  
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -131,38 +132,30 @@ const Register = () => {
         )}
 
         {/* STEP 2: Account Credentials */}
-{/* STEP 2: Account Credentials */}
-{step === 2 && (
-  <>
-    <div className="input-group">
-      <label><FontAwesomeIcon icon={faUserCircle} /> Username</label>
-      <input type="text" name="username" value={formData.username} onChange={handleChange} />
-      {errors.username && <p className="error-text">{errors.username}</p>}
-    </div>
-
-    <div className="input-group">
-      <label><FontAwesomeIcon icon={faLock} /> Password</label>
-      <input type="password" name="password" value={formData.password} onChange={handleChange} />
-      {errors.password && <p className="error-text">{errors.password}</p>}
-    </div>
-
-    <div className="input-group">
-      <label><FontAwesomeIcon icon={faLock} /> Confirm Password</label>
-      <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
-      {errors.confirmPassword && <p className="error-text">{errors.confirmPassword}</p>}
-    </div>
-
-    <div className="button-group">
-      <button type="button" className="btn prev-btn" onClick={handlePrevious}>Previous</button>
-      <button type="button" className="btn next-btn" onClick={handleNext}>Next</button>
-    </div>
-  </>
-)}
-
+        {step === 2 && (
+          <>
+            <div className="input-group">
+              <label><FontAwesomeIcon icon={faUserCircle} /> Username</label>
+              <input type="text" name="username" value={formData.username} onChange={handleChange} />
+              {errors.username && <p className="error-text">{errors.username}</p>}
+            </div>
+            <div className="input-group">
+              <label><FontAwesomeIcon icon={faLock} /> Password</label>
+              <input type="password" name="password" value={formData.password} onChange={handleChange} />
+              {errors.password && <p className="error-text">{errors.password}</p>}
+            </div>
+            <div className="input-group">
+              <label><FontAwesomeIcon icon={faLock} /> Confirm Password</label>
+              <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
+              {errors.confirmPassword && <p className="error-text">{errors.confirmPassword}</p>}
+            </div>
+            <button type="button" className="btn" onClick={handlePrevious}>Previous</button>
+            <button type="button" className="btn" onClick={handleNext}>Next</button>
+          </>
+        )}
 
         {/* STEP 3: Chat Preferences */}
-   {/* STEP 3: Chat Preferences */}
-{step === 3 && (
+        {step === 3 && (
   <>
     <div className="input-group">
       <label><FontAwesomeIcon icon={faUser} /> Chat Nickname</label>
@@ -176,39 +169,49 @@ const Register = () => {
     </div>
 
     <div className="input-group">
-      <label><FontAwesomeIcon icon={faLanguage} /> Preferred Language</label>
-      <select name="language" value={formData.language} onChange={handleChange}>
+      <label>🌐 Preferred Language</label>
+      <select
+        name="language"
+        value={formData.language}
+        onChange={handleChange}
+      >
         <option value="English">English</option>
+        <option value="Hindi">Hindi</option>
         <option value="Spanish">Spanish</option>
         <option value="French">French</option>
         <option value="German">German</option>
-        <option value="Chinese">Chinese</option>
       </select>
     </div>
 
     <div className="input-group">
-      <label><FontAwesomeIcon icon={faEye} /> Profile Visibility</label>
-      <select name="visibility" value={formData.visibility} onChange={handleChange}>
+      <label>👁️ Profile Visibility</label>
+      <select
+        name="visibility"
+        value={formData.visibility}
+        onChange={handleChange}
+      >
         <option value="Public">Public</option>
         <option value="Private">Private</option>
+        <option value="Friends Only">Friends Only</option>
       </select>
     </div>
 
     <div className="input-group">
-      <label><FontAwesomeIcon icon={faBell} /> Notifications</label>
-      <select name="notifications" value={formData.notifications} onChange={handleChange}>
+      <label>🔔 Notifications</label>
+      <select
+        name="notifications"
+        value={formData.notifications}
+        onChange={handleChange}
+      >
         <option value="Yes">Enable</option>
         <option value="No">Disable</option>
       </select>
     </div>
 
-    <div className="button-group">
-      <button type="button" className="btn prev-btn" onClick={handlePrevious}>Previous</button>
-      <button type="button" className="btn next-btn" onClick={handleNext}>Next</button>
-    </div>
+    <button type="button" className="btn" onClick={handlePrevious}>Previous</button>
+    <button type="button" className="btn" onClick={handleNext}>Next</button>
   </>
 )}
-
 
         {/* STEP 4: Review & Submit */}
         {step === 4 && (
@@ -216,15 +219,7 @@ const Register = () => {
             <h3>Review Your Details</h3>
             <p><strong>Name:</strong> {formData.name}</p>
             <p><strong>Email:</strong> {formData.email}</p>
-            <p><strong>Phone:</strong> {formData.phone}</p>
-            <p><strong>Date of Birth:</strong> {formData.dob}</p>
-            <p><strong>Gender:</strong> {formData.gender}</p>
             <p><strong>Username:</strong> {formData.username}</p>
-            <p><strong>Chat Nickname:</strong> {formData.chatNickname}</p>
-            <p><strong>Language:</strong> {formData.language}</p>
-            <p><strong>Profile Visibility:</strong> {formData.visibility}</p>
-            <p><strong>Notifications:</strong> {formData.notifications}</p>
-
             <button type="button" className="btn" onClick={handlePrevious}>Previous</button>
             <button type="submit" className="btn">Submit</button>
           </>
